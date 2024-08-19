@@ -1,7 +1,9 @@
 import React from 'react'
 import './Modal.css'
 
-const Modal = ({ isOpen, header, data, handleInputChange, handleSubmit, setShowModal, buttonName }) => {
+const Modal = ({ isOpen, modalData, data, handleInputChange, handleSubmit, setShowModal }) => {
+    console.log({ isOpen, modalData, data, handleInputChange, handleSubmit, setShowModal });
+
     if (!isOpen) return null;
     return (
         <div>
@@ -10,14 +12,14 @@ const Modal = ({ isOpen, header, data, handleInputChange, handleSubmit, setShowM
                     <span className="close-btn" onClick={() => setShowModal(false)}>
                         &times;
                     </span>
-                    <h2>{header}</h2>
+                    <h2>{modalData.modalName}</h2>
                     <form onSubmit={(e) => handleSubmit(e)}>
                         <div className="form-group">
                             <label htmlFor=''>First Name</label>
                             <input
                                 type="text"
                                 name="firstName"
-                                value={data?.firstName}
+                                defaultValue={data?.firstName}
                                 onChange={(e) => handleInputChange(e)}
                                 required
                             />
@@ -27,7 +29,7 @@ const Modal = ({ isOpen, header, data, handleInputChange, handleSubmit, setShowM
                             <input
                                 type="text"
                                 name="lastName"
-                                value={data?.lastName}
+                                defaultValue={data?.lastName}
                                 onChange={(e) => handleInputChange(e)}
                                 required
                             />
@@ -37,7 +39,7 @@ const Modal = ({ isOpen, header, data, handleInputChange, handleSubmit, setShowM
                             <input
                                 type="email"
                                 name="email"
-                                value={data?.email}
+                                defaultValue={data?.email}
                                 onChange={(e) => handleInputChange(e)}
                                 required
                             />
@@ -46,7 +48,7 @@ const Modal = ({ isOpen, header, data, handleInputChange, handleSubmit, setShowM
                             <label htmlFor=''>Gender</label>
                             <select
                                 name="gender"
-                                value={data?.gender}
+                                defaultValue={data?.gender}
                                 onChange={(e) => handleInputChange(e)}
                                 required
                             >
@@ -59,7 +61,7 @@ const Modal = ({ isOpen, header, data, handleInputChange, handleSubmit, setShowM
                             <label htmlFor=''>Status</label>
                             <select
                                 name="status"
-                                value={data?.status}
+                                defaultValue={data?.status ? "1" : "0"}
                                 onChange={(e) => handleInputChange(e)}
                                 required
                             >
@@ -69,7 +71,7 @@ const Modal = ({ isOpen, header, data, handleInputChange, handleSubmit, setShowM
                             </select>
                         </div>
                         <button type="submit" className="btn-primary">
-                            {buttonName}
+                            {modalData.modalButtonName}
                         </button>
                     </form>
                 </div>

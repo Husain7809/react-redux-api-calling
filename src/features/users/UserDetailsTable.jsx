@@ -27,7 +27,7 @@ const UserDetailsTable = ({ users, onEdit, onDelete, onView }) => {
                             <td>{user.status ? "Active" : "InActive"}</td>
                             <td className="actions">
                                 <button className="edit-btn" onClick={() => onEdit(user.id)}>Edit</button>
-                                <button className="delete-btn" onClick={() => onDelete(user.id)}>Delete</button>
+                                <button className="delete-btn" onClick={() => confirm("Are you sure you want to delete this record ?") ? onDelete(user.id) : false}>Delete</button>
                                 <button className="view-btn" onClick={() => onView(user.id)}>View</button>
                             </td>
                         </tr>
